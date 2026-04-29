@@ -2,7 +2,7 @@ const checkOrder = function (available, ordered) {
     if (ordered === 0) {
         return "Your order is empty";
     } else if (ordered > available) {
-        return "Your order is too large";
+        return "our order is too large, we don’t have enough goods.";
     } else {
         return "Your order is accepted";
     }
