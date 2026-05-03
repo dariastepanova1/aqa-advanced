@@ -10,7 +10,7 @@ const divide = function (numerator, denominator) {
 
 console.log(divide(10, 2)); 
 console.log(divide(2, 0));
-console.log(divide("a",2));
+console.log(divide('a',2));
 
 try {
     divide(10, 2);
@@ -29,7 +29,7 @@ try {
 }
 
 try {
-    divide("a", 2);
+    divide('a', 2);
 } catch (error) {
     console.log(error.message);
 } finally {
