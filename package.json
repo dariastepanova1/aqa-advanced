@@ -15,9 +15,13 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "node ./node-basics/index.js"
+    "test": "node ./node-basics/index.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "chalk": "^5.6.2"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
   }
 }
