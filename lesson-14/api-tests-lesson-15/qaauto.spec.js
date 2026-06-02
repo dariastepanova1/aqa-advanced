@@ -65,11 +65,9 @@ test("Create user - request validation", async () => {
   expect(request.data).toEqual(userData);
 
   //check headers of request
-  expect(request.headers).toEqual(
-    expect.objectContaining({
-      "Content-type": "application/json; charset=UTF-8",
-    })
-  );
+  expect(request.headers).toMatchObject({
+    "Content-type": "application/json; charset=UTF-8",
+  });
 });
 
 //HW - task3
