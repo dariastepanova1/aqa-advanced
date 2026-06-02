@@ -31,7 +31,7 @@ test("Login user - success basic scenario", async () => {
   const response = await account.loginUser({
     email: email,
     password: "Password123!",
-    rememberMe: true,
+    remember: false,
   });
 
   expect(response.status).toBe(200);
