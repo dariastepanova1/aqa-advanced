@@ -3,15 +3,17 @@ import { jest } from "@jest/globals";
 
 const account = new Account();
 
+const userData = {
+  name: "John",
+  lastName: "Smith",
+  email: `john.smith${Date.now()}@mail.com`,
+  password: "Password123!",
+  repeatPassword: "Password123!",
+};
+
 //Some practice with qaauto
 test("Create user - success basic scenario", async () => {
-  const response = await account.createUser({
-    name: "John",
-    lastName: "Smith",
-    email: `john.smith${Date.now()}@mail.com`,
-    password: "Password123!",
-    repeatPassword: "Password123!",
-  });
+  const response = await account.createUser(userData);
 
   expect(response.status).toBe(201);
   expect(response.data.data).toHaveProperty("userId");
@@ -19,18 +21,11 @@ test("Create user - success basic scenario", async () => {
 
 //Some practice with qaauto
 test("Login user - success basic scenario", async () => {
-  const email = `john.smith${Date.now()}@mail.com`;
-  await account.createUser({
-    name: "John",
-    lastName: "Smith",
-    email: email,
-    password: "Password123!",
-    repeatPassword: "Password123!",
-  });
+  await account.createUser(userData);
 
   const response = await account.loginUser({
-    email: email,
-    password: "Password123!",
+    email: userData.email,
+    password: userData.password,
     remember: false,
   });
 
@@ -48,16 +43,6 @@ test("Wrong URL request", async () => {
 
 //HW - task2
 test("Create user - request validation", async () => {
-  const email = `john.smith${Date.now()}@mail.com`;
-
-  const userData = {
-    name: "John",
-    lastName: "Smith",
-    email,
-    password: "Password123!",
-    repeatPassword: "Password123!",
-  };
-
   const response = await account.createUser(userData);
   const request = account.lastRequest;
 
@@ -79,14 +64,6 @@ test("Create user - mocked success scenario", async () => {
 
   jest.spyOn(account, "post").mockResolvedValue(mockResponse);
 
-  const userData = {
-    name: "John",
-    lastName: "Smith",
-    email: `john.smith${Date.now()}@mail.com`,
-    password: "Password123!",
-    repeatPassword: "Password123!",
-  };
-
   const response = await account.createUser(userData);
 
   // response check
@@ -102,14 +79,6 @@ test("Create user - mocked failed scenario", async () => {
   };
 
   jest.spyOn(account, "post").mockResolvedValue(mockResponse);
-
-  const userData = {
-    name: "John",
-    lastName: "Smith",
-    email: `john.smith${Date.now()}@mail.com`,
-    password: "Password123!",
-    repeatPassword: "Password123!",
-  };
 
   const response = await account.createUser(userData);
 
